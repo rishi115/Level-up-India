@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
 
+import '../Add_Projects/Add_Projects.dart';
 import '../Home_page.dart';
 import '../feed.dart';
 
@@ -33,8 +34,9 @@ class _nav_barState extends State<nav_bar> with SingleTickerProviderStateMixin {
     Home_page(),
     Feed(),
     Home_page(),
-
     Home_page(),
+
+
   ];
 
   @override

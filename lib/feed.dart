@@ -60,7 +60,7 @@ class _FeedState extends State<Feed> {
               onTap: () {
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => Project_Details()),
+                  MaterialPageRoute(builder: (context) => Project_Details ()),
                 );
                 },
               child: Container(
