@@ -4,10 +4,14 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:levelupindia/widgets/Button.dart';
 import 'package:levelupindia/Signup.dart';
+import 'package:levelupindia/widgets/Snackbar.dart';
 import 'package:levelupindia/widgets/Square_tile.dart';
 import 'package:levelupindia/widgets/Text_field.dart';
 import 'package:levelupindia/widgets/colors.dart';
-import 'package:levelupindia/widgets/navbar.dart';
+import 'package:levelupindia/navbar.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+
+import 'Model.dart';
 
 class LoginPage extends StatefulWidget {
   final Function()? onTap;
@@ -95,6 +99,15 @@ class _LoginPageState extends State<LoginPage> {
   //     },
   //   );
   // }
+  bool authorizeAccess(String email, String password) {
+    // Iterate through the list of users and check if there's a match
+    for (User user in users) {
+      if (user.email == email && user.password == password) {
+        return true; // Authorization successful
+      }
+    }
+    return false; // Authorization failed
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -176,11 +189,20 @@ class _LoginPageState extends State<LoginPage> {
                 // sign in button
                 MyButton(
                   text: "Signin",
-                  onTap: (){
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(builder: (context) => nav_bar()),
-                    );
+                  onTap: ()async{
+                    if (authorizeAccess(emailController.text, passwordController.text)) {
+                      SharedPreferences prefs = await SharedPreferences.getInstance();
+                      await prefs.setString('user_email', passwordController.text.toString());
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => nav_bar(usertype: 123,)),
+                      );
+                      print('Access granted'); // User is authorized
+                    } else {
+                      print('Access denied');
+                      ScaffoldMessenger.of(context).showSnackBar(createSnackBar("Incorrect Email"));// User is not authorized
+                    }
+
 
                   },
                 ),
@@ -238,7 +260,8 @@ class _LoginPageState extends State<LoginPage> {
                     const SizedBox(width: 4),
                     GestureDetector(
                       onTap: (){
-                        Navigator.push(context, MaterialPageRoute(builder: (context)=>SignUp()));
+
+                        // Navigator.push(context, MaterialPageRoute(builder: (context)=>SignUp()));
                       },
                       child: const Text(
                         'Register now',

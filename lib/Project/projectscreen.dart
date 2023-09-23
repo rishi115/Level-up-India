@@ -38,9 +38,19 @@ class _Project_DetailsState extends State<Project_Details> {
         title: const Text('Project Details'),
         backgroundColor:  Color(0xff2c100c),
         actions: [
-          IconButton(
-            onPressed: () {},
-            icon: const Icon(Icons.more_vert),
+          PopupMenuButton<String>(
+            itemBuilder: (BuildContext bc) => [
+              PopupMenuItem(child: Text("Report"), value: "Edit",
+              ),
+              PopupMenuItem(child: Text("Issue"), value: "Delete"),
+              PopupMenuItem(child: Text("Feature Idea"), value: "Delete"),
+              PopupMenuItem(child: Text("Message to Owner"), value: "Delete"),
+            ],
+            onSelected: (value) {
+              print(value);
+            },
+            icon: Icon(Icons.more_vert),
+            color: Colors.purple.shade50,
           ),
         ],
       ),
@@ -238,6 +248,65 @@ class _Project_DetailsState extends State<Project_Details> {
               height: 10,
             ),
             Padding(
+              padding: const EdgeInsets.only(right: 14.0,left: 15),
+              child: Container(
+                height: 150,
+                width: double.infinity,
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(20.0),
+                  color:  Colors.green.shade300,
+                ),
+                child:Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.only(top:10,left:8.0),
+                      child: SelectableText(
+                        "Github Link : ",
+                        style: TextStyle(
+                          color: Colors.brown,
+                          fontSize: 18,
+                        ),
+                      ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.only(left: 10.0),
+                      child: SelectableText(
+                        "https://github.com/rishi115/flutter-googlemap.git",
+                        style: TextStyle(
+                          color: Colors.black,
+                          fontSize: 18,
+                        ),
+                      ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.only(top:10,left:8.0),
+                      child: SelectableText(
+                        "Website Link : ",
+                        style: TextStyle(
+                          color: Colors.brown,
+                          fontSize: 18,
+                        ),
+                      ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.only(left: 10.0),
+                      child: SelectableText(
+                        "https://alaram-c84e9.firebaseapp.com/",
+                        style: TextStyle(
+                          color: Colors.black,
+                          fontSize: 18,
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ),
+            SizedBox(
+              height: 10,
+            ),
+            Padding(
                 padding: const EdgeInsets.only(right: 14.0,left: 15),
                 child: Container(
                   height: 120,
@@ -382,13 +451,112 @@ class _Project_DetailsState extends State<Project_Details> {
                   ),
                   Visibility(
                     visible: selectedTabIndex == 2, // Show content when "Description" tab is selected
-                    child: Container(
-                      height: 300,
-                      width: double.infinity,
-                      color: Color(0xff2c100c),
-                      child: Center(
-                        child: Text("Comments", style: TextStyle(color: Colors.white)),
-                      ),
+                    child: Column(
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.only(top:8.0),
+                          child: Column(
+                            children: [
+                              Container(
+                                width: double.infinity,
+                                child: Row(
+                                  mainAxisAlignment: MainAxisAlignment.start,
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    SizedBox(
+                                      width: 10,
+                                    ),
+                                    Padding(
+                                      padding: const EdgeInsets.all(8.0),
+                                      child: CircleAvatar(
+                                        radius: 20,
+                                        backgroundImage: NetworkImage('https://tse1.mm.bing.net/th?id=OIP.NqY3rNMnx2NXYo3KJfg43gHaHa&pid=Api&rs=1&c=1&qlt=95&w=123&h=123'),
+                                      ),
+                                    ),
+                                    Container(
+                                      height: 150,
+                                      width: 280,
+                                      decoration: BoxDecoration(
+                                        borderRadius: BorderRadius.circular(20.0),
+                                        color:  Colors.brown.shade100,
+                                      ),
+                                      child: Column(
+                                        mainAxisAlignment: MainAxisAlignment.start,
+                                        crossAxisAlignment: CrossAxisAlignment.start,
+                                        children: [
+                                              Padding(
+                                                padding: const EdgeInsets.only(left:8.0,top: 8.0),
+                                                child: Text(
+                                                  "Rishikesh Devare",style: TextStyle(
+                                                  color: Colors.black,
+                                                  fontSize: 16,
+                                                ),
+                                                ),
+                                              ),
+                                          SizedBox(
+                                            height: 2,
+                                          ),
+                                          Padding(
+                                            padding: const EdgeInsets.only(left:8.0),
+                                            child: Text(
+                                              "SIGCE",style: TextStyle(
+                                              color: Colors.black,
+                                              fontSize: 13,
+                                            ),
+                                            ),
+                                          ),
+                                          SizedBox(
+                                            height: 2,
+                                          ),
+                                          Padding(
+                                            padding: const EdgeInsets.all(13.0),
+                                            child: Container(
+                                             height:75,
+                                              width: 250,
+                                              decoration: BoxDecoration(
+                                                borderRadius: BorderRadius.circular(20.0),
+                                                color:  Colors.white,
+                                              ),
+                                              child: Padding(
+                                                padding: const EdgeInsets.only(left:8.0,top: 8.0),
+                                                child: Text(
+                                                  "I am a Flutter Developer",style: TextStyle(
+                                                  color: Colors.black,
+                                                  fontSize: 17,
+                                                ),
+                                                ),
+                                              ),
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                    )
+                                  ],),),
+                              SizedBox(
+                                height:1,
+                              ),
+
+                              Row(
+                                children: [
+                                  SizedBox(
+                                    width: 80,
+                                  ),
+                                  Text('Like',style: TextStyle(
+                                    color: Colors.white,
+                                    fontSize: 14,
+                                  ),)  ,
+                                  SizedBox(width: 20,),
+                                  Text('Comment',style: TextStyle(
+                                    color: Colors.white,
+                                    fontSize: 14,
+                                  ),)  ,
+                                ],
+                              )
+
+                            ],
+                          ),
+                        ),
+                      ],
                     ),
                   ),
 

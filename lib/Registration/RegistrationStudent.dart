@@ -4,6 +4,9 @@ import 'package:levelupindia/Home_page.dart';
 import 'package:levelupindia/widgets/Button.dart';
 import 'package:levelupindia/widgets/colors.dart';
 
+import '../login_page.dart';
+import '../navbar.dart';
+
 class StudentRegistrationForm extends StatefulWidget {
   @override
   State<StudentRegistrationForm> createState() => _StudentRegistrationFormState();
@@ -136,7 +139,7 @@ class _StudentFormState extends State<StudentForm> {
             MyButton(onTap: (){
               Navigator.push(
                 context,
-                MaterialPageRoute(builder: (context) => Home_page()),
+                MaterialPageRoute(builder: (context) => LoginPage(onTap: () {  },)),
               );
             }, text:"Submit")
           ],

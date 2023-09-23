@@ -2,7 +2,9 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:levelupindia/login_page.dart';
 
-import 'RegistrationStudent.dart';
+import 'Registration/CollegeRegistration.dart';
+import 'Registration/IndsutryRegister.dart';
+import 'Registration/RegistrationStudent.dart';
 import 'widgets/Button.dart';
 import 'widgets/Square_tile.dart';
 import 'widgets/Text_field.dart';
@@ -185,11 +187,19 @@ class _SignUpState extends State<SignUp> {
                       // Industry/Company sign-in logic
                       String companyEmail = emailController.text;
                       String companyPassword = passwordController.text;
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => IndustryRegister()),
+                      );
                       // Do something with companyEmail and companyPassword for industry sign-in
                     }else if (selectedOption == 'Institute') {
                       // Industry/Company sign-in logic
                       String companyEmail = emailController.text;
                       String companyPassword = passwordController.text;
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => CollegeRegistration()),
+                      );
                       // Do something with companyEmail and companyPassword for industry sign-in
                     }},
                   ),
