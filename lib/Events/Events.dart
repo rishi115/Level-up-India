@@ -14,6 +14,7 @@ class _EventsState extends State<Events> {
   Widget build(BuildContext context) {
     return Scaffold(
 
+
       appBar: AppBar(
         title: Text('Events',
           style: TextStyle(

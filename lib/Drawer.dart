@@ -1,7 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:levelupindia/Community/Community.dart';
+import 'package:levelupindia/ProblemStatement/Problems.dart';
 
+import 'Chatgpt/ChatPage.dart';
 import 'Events/Events.dart';
 import 'Leaderboard/leaderBoard.dart';
+import 'login_page.dart';
 
 class NavigationDrawerWidget extends StatelessWidget {
   final padding = EdgeInsets.symmetric(horizontal: 20);
@@ -171,43 +175,61 @@ class NavigationDrawerWidget extends StatelessWidget {
             SizedBox(
               height: 12,
             ),
-            Container(
-              height: 70,
-              width: 50,
-              decoration: BoxDecoration(
-                color: Colors.brown[200],
-                borderRadius: BorderRadius.circular(15),
-              ),
-              child: Center(
-                child: Text(
-                  'Community',
-                  style: TextStyle(
-                    fontSize: 23,
-                    fontWeight: FontWeight.bold,
+            InkWell(
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => ChatScreen()),
+                );
+
+              },
+              child: Container(
+                height: 70,
+                width: 50,
+                decoration: BoxDecoration(
+                  color: Colors.brown[200],
+                  borderRadius: BorderRadius.circular(15),
+                ),
+                child: Center(
+                  child: Text(
+                    'Assistance',
+                    style: TextStyle(
+                      fontSize: 23,
+                      fontWeight: FontWeight.bold,
+                    ),
                   ),
                 ),
               ),
             ),
+            
             SizedBox(
               height: 12,
             ),
-            Container(
-              height: 50,
-              width: 50,
-              decoration: BoxDecoration(
-                color: Colors.brown[200],
-                borderRadius: BorderRadius.circular(15),
-              ),
-              child: Center(
-                child: Text(
-                  'Challenge',
-                  style: TextStyle(
-                    fontSize: 23,
-                    fontWeight: FontWeight.bold,
+            InkWell(
+              onTap: () {
+
+              Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => LoginPage(onTap: () {})));
+
+              },
+              child: Container(
+                height: 70,
+
+                decoration: BoxDecoration(
+                  color: Colors.brown[200],
+                  borderRadius: BorderRadius.circular(15),
+                ),
+                child: Center(
+                  child: Text(
+                    'Log out ',
+                    style: TextStyle(
+                      fontSize: 23,
+                      fontWeight: FontWeight.bold,
+                    ),
                   ),
                 ),
               ),
             ),
+
 
           ],
         ),

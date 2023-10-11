@@ -8,6 +8,7 @@ import 'package:levelupindia/widgets/Content_screen.dart';
 import '../Project/projectscreen.dart';
 import '../widgets/Snackbar.dart';
 
+
 class Feed extends StatefulWidget {
   const Feed({super.key});
 
@@ -16,6 +17,187 @@ class Feed extends StatefulWidget {
 }
 
 class _FeedState extends State<Feed> {
+  String selectedCategory = 'All'; // Default selected category
+  String statuss = 'All'; // Default selected category
+  bool isSelected = false; // Default checkbox state
+  List<String> status = ['All','Completed', 'Ongoing'];
+  List<String> categories = ['All','Smart Education', 'Technology', 'Healthcare'];
+  get selectedOption => null;
+  bool isLiked = false;
+
+  void _showFilterBottomSheet() {
+    showModalBottomSheet(
+      context: context,
+      builder: (context) {
+        return StatefulBuilder(
+          builder: (context, setState) {
+            return Container(
+              padding: const EdgeInsets.all(16.0),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Column(
+                        children: [
+                          Text('Category',style: TextStyle(
+                            fontSize: 16,
+                            color: Colors.black,
+                          ),),
+                          DropdownButton<String>(
+                            value: selectedCategory,
+                            onChanged: (String? newValue) {
+                              setState(() {
+                                selectedCategory = newValue ?? '';
+                              });
+                            },
+                            items: categories.map((String category) {
+                              return DropdownMenuItem<String>(
+                                value: category,
+                                child: Text(category),
+                              );
+                            }).toList(),
+                          ),
+                        ],
+                      ),
+                      Column(
+                        children: [
+                          Text('Status',style: TextStyle(
+                            fontSize: 16,
+                            color: Colors.black,
+                          ),),
+                          DropdownButton<String>(
+                            value: statuss,
+                            onChanged: (String? newValue) {
+                              setState(() {
+                                selectedCategory = newValue ?? '';
+                              });
+                            },
+                            items: status.map((String category) {
+                              return DropdownMenuItem<String>(
+                                value: category,
+                                child: Text(category),
+                              );
+                            }).toList(),
+                          ),
+                        ],
+                      ),
+                    ],
+                  ),
+                  ListTile(
+                    title: Text('Top Liked Projects',style: TextStyle(
+                      fontSize: 16,
+                      color: Colors.black,
+                    ),),
+                    leading: Checkbox(
+                      checkColor: Colors.black,
+                      value:(){
+                        if(selectedOption == 'Student'){
+                          return true;
+                        }else{
+                          return false;
+                        }
+                      }(), onChanged: (bool? value) {  },
+
+                    ),
+                  ),
+                  ListTile(
+                    title: Text('Software',style: TextStyle(
+                      fontSize: 16,
+                      color: Colors.black,
+                    ),),
+                    leading: Checkbox(
+                      checkColor: Colors.black,
+                      value:(){
+                        if(selectedOption == 'Student'){
+                          return true;
+                        }else{
+                          return false;
+                        }
+                      }(), onChanged: (bool? value) {  },
+
+                    ),
+                  ),
+                  ListTile(
+                    title: Text('Hardware',style: TextStyle(
+                      fontSize: 16,
+                      color: Colors.black,
+                    ),),
+                    leading: Checkbox(
+                      checkColor: Colors.black,
+                      value:(){
+                        if(selectedOption == 'Student'){
+                          return true;
+                        }else{
+                          return false;
+                        }
+                      }(), onChanged: (bool? value) {  },
+
+                    ),
+                  ),
+
+                  ListTile(
+                    title: Text('Top Commented Projects',style: TextStyle(
+                      fontSize: 16,
+                      color: Colors.black,
+                    ),),
+                    leading: Checkbox(
+                      checkColor: Colors.white,
+                      value:(){
+                        if(selectedOption == 'Student'){
+                          return true;
+                        }else{
+                          return false;
+                        }
+                      }(), onChanged: (bool? value) {  },
+
+                    ),
+                  ),
+                  ListTile(
+                    title: Text('Top Saved Projects',style: TextStyle(
+                      fontSize: 16,
+                      color: Colors.black,
+                    ),),
+                    leading: Checkbox(
+                      checkColor: Colors.white,
+                      value:(){
+                        if(selectedOption == 'Student'){
+                          return true;
+                        }else{
+                          return false;
+                        }
+                      }(), onChanged: (bool? value) {  },
+
+                    ),
+                  ),
+                  ListTile(
+                    title: Text('Top Shared Projects',style: TextStyle(
+                      fontSize: 16,
+                      color: Colors.black,
+                    ),),
+                    leading: Checkbox(
+                      checkColor: Colors.white,
+                      value:(){
+                        if(selectedOption == 'Student'){
+                          return true;
+                        }else{
+                          return false;
+                        }
+                      }(), onChanged: (bool? value) {  },
+
+                    ),
+                  ),
+
+                ],
+              ),
+            );
+          },
+        );
+      },
+    );
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -48,8 +230,10 @@ class _FeedState extends State<Feed> {
                   ),
                   const SizedBox(width: 5),
                   IconButton(
-                    onPressed: () {},
-                    icon: const Icon(Icons.menu),
+                    onPressed: () {
+                      _showFilterBottomSheet();
+                    },
+                    icon: const Icon(Icons.filter_alt_outlined),
                   ),
                 ],
               ),
@@ -124,7 +308,7 @@ class _FeedState extends State<Feed> {
                     ),
                     Container(
                       child: Text(
-                          'ShopifyX: Revolutionizing Online Shopping'
+                          'Butterfly Garden Planner: A Mobile App'
                               ,style: TextStyle(
                         fontSize: 17
                       ),
@@ -136,7 +320,7 @@ class _FeedState extends State<Feed> {
                     Container(
                         padding: EdgeInsets.only(left:15),
                         child: Text(
-                          "Discription : ShopifyX leverages advanced AI and machine learning algorithms to understand ea"
+                          "Discription :  Create a mobile app to promote butterfly conservation through education, identification, and community engagement"
                         ,style: TextStyle(
                           fontSize: 13,
                           fontFamily: 'Roboto',
@@ -154,8 +338,13 @@ class _FeedState extends State<Feed> {
                             width: 30,
                           ),
                           IconButton(
-                            onPressed: () {ScaffoldMessenger.of(context).showSnackBar(createSnackBar("Liked"));},
-                            icon: const Icon(Icons.favorite_border),
+                            onPressed: () {
+                              setState(() {
+                                isLiked = !isLiked;
+                              });
+                            },
+                            icon: (!isLiked)?Icon(Icons.favorite_border_outlined,color: Colors.black,)
+                                :Icon(Icons.favorite,color: Colors.black,),
                           ),
                           SizedBox(
                             width: 30,
@@ -256,7 +445,7 @@ class _FeedState extends State<Feed> {
                     ),
                     Container(
                       child: Text(
-                        'ShopifyX: Revolutionizing Online Shopping'
+                        'Butterfly Garden Planner: A Mobile App'
                         ,style: TextStyle(
                           fontSize: 17
                       ),
@@ -268,7 +457,7 @@ class _FeedState extends State<Feed> {
                     Container(
                         padding: EdgeInsets.only(left:15),
                         child: Text(
-                          "Discription : ShopifyX leverages advanced AI and machine learning algorithms to understand ea"
+                          "Discription :  Create a mobile app to promote butterfly conservation through education, identification, and community engagement"
                           ,style: TextStyle(
                           fontSize: 13,
                           fontFamily: 'Roboto',
@@ -388,7 +577,7 @@ class _FeedState extends State<Feed> {
                     ),
                     Container(
                       child: Text(
-                        'ShopifyX: Revolutionizing Online Shopping'
+                        'Butterfly Garden Planner: A Mobile App'
                         ,style: TextStyle(
                           fontSize: 17
                       ),
@@ -400,7 +589,7 @@ class _FeedState extends State<Feed> {
                     Container(
                         padding: EdgeInsets.only(left:15),
                         child: Text(
-                          "Discription : ShopifyX leverages advanced AI and machine learning algorithms to understand ea"
+                          "Discription :  Create a mobile app to promote butterfly conservation through education, identification, and community engagement"
                           ,style: TextStyle(
                           fontSize: 13,
                           fontFamily: 'Roboto',

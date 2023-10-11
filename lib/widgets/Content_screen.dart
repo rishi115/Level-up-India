@@ -85,6 +85,7 @@ class _ContentScreenState extends State<ContentScreen> {
                 _controller.value.isPlaying
                     ? Icons.pause
                     : Icons.play_arrow,
+                color: Colors.black,
               ),
             ),
           ),

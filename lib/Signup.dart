@@ -67,7 +67,8 @@ class _SignUpState extends State<SignUp> {
                             });
                           },
                         ),
-                      ),ListTile(
+                      ),
+                      ListTile(
                         title: Text('Industry/Company',
                           style: TextStyle(
                           fontSize: 16,

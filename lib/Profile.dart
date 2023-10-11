@@ -23,7 +23,7 @@ class _ProfileState extends State<Profile> {
   Future<void> _loadData() async {
     final prefs = await SharedPreferences.getInstance();
     final String? storedEmail = prefs.getString('user_email');
-    if (storedEmail =='456') {
+    if (storedEmail =='456'||storedEmail =='789') {
       setState(() {
         showContainer = true;
       });

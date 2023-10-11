@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:levelupindia/login_page.dart';
 import 'package:levelupindia/navbar.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -7,7 +8,9 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   SharedPreferences prefs = await SharedPreferences.getInstance();
   String? storedEmail = prefs.getString('user_email');
-
+  // await dotenv.load(
+  //     fileName: ".env" // You can move this to a global location
+  // );
   runApp(MyApp(storedEmail: storedEmail));
 }
 

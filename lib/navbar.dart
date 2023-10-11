@@ -3,9 +3,11 @@ import 'package:google_nav_bar/google_nav_bar.dart';
 import 'Community/Community.dart';
 import 'Drawer.dart';
 import 'Home_page.dart';
+import 'Notification.dart';
 import 'ProblemStatement/Problems.dart';
 import 'Profile.dart';
 import 'feed/feed.dart';
+
 
 class nav_bar extends StatefulWidget {
   final int usertype;
@@ -71,8 +73,8 @@ class _nav_barState extends State<nav_bar> with SingleTickerProviderStateMixin {
                 Icon(Icons.location_on_outlined, size: 13,color: Colors.black,),
                 SizedBox(width: 2),
                 Text(
-                  "Nerul, Navi Mumbai",
-                  style: TextStyle(color: Colors.black, fontSize: 12.0),
+                  "Smt Indira Gandhi College of Engineering",
+                  style: TextStyle(color: Colors.black, fontSize: 11.0),
                 ),
               ],
             )
@@ -84,8 +86,38 @@ class _nav_barState extends State<nav_bar> with SingleTickerProviderStateMixin {
             _openDrawer();
           },
         ),
-        actions: const [
-          Icon(Icons.notification_important_outlined,color: Colors.black),
+        actions:  [
+          Stack(
+            children: [
+              IconButton(
+                icon: const Icon(Icons.notification_important_outlined, color: Colors.black),
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => Notificationion()),
+                  );
+                },
+              ),
+              Positioned(
+                right: 5,
+                top: 5,
+                child: Container(
+                  padding: EdgeInsets.all(3),
+                  decoration: BoxDecoration(
+                    shape: BoxShape.circle,
+                    color: Colors.red, // Change the color as needed
+                  ),
+                  child: Text(
+                    '5', // Replace with your actual count
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 12, // Adjust font size as needed
+                    ),
+                  ),
+                ),
+              ),
+            ],
+          ),
           SizedBox(width: 15),
         ],
       ),
